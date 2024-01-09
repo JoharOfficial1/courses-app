@@ -18,11 +18,15 @@ use App\Http\Controllers\StudentCourseController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::get('/admin', function () {
-    return view('auth.login');
+    if (Auth::user()) {
+        return redirect()->route('courses.index');
+    } else {
+        return view('auth.login');
+    }
 });
 
 Route::middleware('auth')->group(function () {
