@@ -20,23 +20,23 @@
 
                         <div>
                             <x-input-label for="roll_number" :value="__('Roll Number')" />
-                            <x-text-input type="text" name="roll_number" id="roll_number" class="block mt-1 w-full" :value="old('roll_number')" autofocus required/>
+                            <x-text-input type="text" name="roll_number" id="roll_number" class="block mt-1 w-full" :value="old('roll_number')" placeholder="Enter roll number" autofocus required/>
                             <x-input-error :messages="$errors->get('roll_number')" class="mt-2" />
                         </div>
 
                         <div class="mt-3">
                             <x-input-label for="serial_number" :value="__('Serial Number')" />
-                            <x-text-input type="text" name="serial_number" id="serial_number" class="block mt-1 w-full" :value="old('serial_number')" autofocus required/>
+                            <x-text-input type="text" name="serial_number" id="serial_number" class="block mt-1 w-full" :value="old('serial_number')" placeholder="Enter serial number" autofocus required/>
                             <x-input-error :messages="$errors->get('serial_number')" class="mt-2" />
                         </div>
 
                         <div class="mt-3">
                             <x-input-label for="course" :value="__('Course')" />
-                            <select class="form-select" id="course" name="course">
+                            <select class="form-select" id="course" name="course" required>
                                 <option value="">Select Course</option>
 
                                 @foreach ($courses as $course)
-                                    <option value="{{ $course->id }}">{{ $course->name }}</option>
+                                    <option value="{{ $course->id }}" @if(old('course') == $course->id) selected @endif>{{ $course->name }}</option>
                                 @endforeach
                             </select>
                             <x-input-error :messages="$errors->get('course')" class="mt-2" />

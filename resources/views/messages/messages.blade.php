@@ -16,7 +16,7 @@
 		<div class="alert-body">
 			<strong>Error!</strong> {{Session::get('error')}}
 		</div>
-		<button type="button" class="close border border-dark" data-dismiss="alert" aria-label="Close">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		</button>
 	</div>

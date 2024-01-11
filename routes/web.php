@@ -18,7 +18,7 @@ use App\Http\Controllers\StudentCourseController;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    return view('student-courses.verify');
 });
 
 Route::get('/admin', function () {
@@ -35,9 +35,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('courses', CourseController::class);
-    Route::resource('student-courses', StudentCourseController::class);
 });
 
-Route::resource('course-verify', CourseVerifyController::class);
+Route::post('verify', [StudentCourseController::class, 'verify'])->name('student-courses.verify');
+Route::resource('student-courses', StudentCourseController::class)->middleware('auth')->except([
+    'verify',
+]);
 
 require __DIR__.'/auth.php';

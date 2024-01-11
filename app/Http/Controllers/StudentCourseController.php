@@ -140,4 +140,20 @@ class StudentCourseController extends Controller
             return redirect()->route('student-courses.index');
         }
     }
+
+    /**
+     * Display course verify page.
+     */
+    public function verify(Request $request)
+    {
+        $studentCourses = StudentCourse::where("$request->search_type", $request->number)->get();
+
+        if ($studentCourses->isNotEmpty()) {
+            return view('student-courses.verified-courses')->with('studentCourses', $studentCourses);
+        } else {
+            Session::flash('error', "No Course found");
+
+            return back()->withInputs($request->all());
+        }
+    }
 }
